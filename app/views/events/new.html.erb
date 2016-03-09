@@ -1,0 +1,7 @@
+<%= form_for(@event, :url => {:action => 'create'}) do |e| %>
+  <%= e.label :name %>
+  <%= e.text_field :name %>
+  <%= e.label :description %>
+  <%= e.text_area :description %>
+  <%= e.submit "Create Event" %>
+<% end %>

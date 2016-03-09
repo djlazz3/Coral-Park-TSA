@@ -1,0 +1,11 @@
+<table>
+  <% @events.each do |e| %>
+  <tr>
+    <td><h1><%= e.name %></h1>
+    <%= link_to "More Info", :action => 'show', :id => e.id %>
+    <%= link_to "Edit", :action => 'edit', :id => e.id %>
+    <%= link_to "Delete", {:action => 'destroy', :id => e.id}, method: :delete %>
+    </td>
+  </tr>
+  <% end %>
+</table>
