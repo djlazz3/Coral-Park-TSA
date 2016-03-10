@@ -13,6 +13,7 @@ x.last_name = 'admin'
 x.email = 'admin@admin.com'
 x.password = 'password1'
 x.password_confirmation = 'password1'
+x.admin = true
 x.save
 
 events = Event.create([
@@ -50,6 +51,7 @@ justify and demonstrate their solution in a timed presentation.'},
                           {name: 'Technology Bowl', description: 'Participants (one team of three individuals per chapter) complete a written, objective test in order to qualify for oral question/response, head-to-head team competition.'},
                           {name: 'Technology Problem Solving', description: 'Participants (one team of two individuals per chapter) work together on site to develop and create a solution to a problem using the limited materials provided and the tools allowed.'},
                           {name: 'Transportation Modeling', description: 'Participants (one individual per chapter, one entry per individual) design and produce a scale model of a vehicle that fits the annual design problem.'},
+                          {name: 'Vex'},
                           {name: 'Video Game Design', description: 'Participants [three teams per state (a minimum of two individuals per team), one entry per team] develop an E+10-rated game that focuses on the subject of their choice.'},
                           {name: 'Webmaster', description: 'Participants (one team of three to five individuals per chapter) are required to design, build, and launch a website that features their school’s career and technology/engineering program, the TSA chapter, and the chapter’s ability to research and present a given topic pertaining to technology. Semifinalists participate in an on-site interview to demonstrate the knowledge and expertise gained during the development of the website - with an emphasis on web design methods and practices, as well as their research for the annual design topic.'}
                       ])

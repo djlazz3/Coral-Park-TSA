@@ -1,10 +1,13 @@
+<%= link_to "Back", root_path %>
 <table>
   <% @events.each do |e| %>
   <tr>
     <td><h1><%= e.name %></h1>
     <%= link_to "More Info", :action => 'show', :id => e.id %>
+      <% if current_user.try(:admin) %>
     <%= link_to "Edit", :action => 'edit', :id => e.id %>
     <%= link_to "Delete", {:action => 'destroy', :id => e.id}, method: :delete %>
+      <% end %>
     </td>
   </tr>
   <% end %>

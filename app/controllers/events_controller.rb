@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   end
   def update
     @event = Event.find(params[:id])
+
       if @event.update_attributes(event_params)
         redirect_to(:action => 'show', :id => @event.id)
       else
@@ -38,6 +39,6 @@ class EventsController < ApplicationController
   end
   private
   def event_params
-    params.require(:event).permit(:name, :description)
+    params.require(:event).permit(:name, :description, {:user_ids => []})
   end
 end
