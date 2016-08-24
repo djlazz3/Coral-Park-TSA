@@ -1,0 +1,13 @@
+<%= form_for(@comment, :url => {:action => 'create'}) do |c| %>
+    <%= c.label :task %>
+    <%= c.text_field :title %>
+    <%= c.label :start_time %>
+    <%= c.time_select :start_time, :include_blank => false%>
+    <%= c.label :end_time %>
+    <%= c.time_select :end_time, :include_blank => false%>
+    <%= c.label :comment %>
+    <%= c.text_area :description %>
+    <%= c.hidden_field :users_id, value: current_user.id %>
+    <%= c.hidden_field :events_id, value: @event.id%>
+    <%= c.submit "Add Comment" %>
+<% end %>

@@ -7,8 +7,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   get 'events/index'
   get 'accounts/index'
+  get 'session/index'
    resources :accounts
-   resources :events
+   resources :comments
+   resources :events do
+     member do
+       post :complete
+     end
+   end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

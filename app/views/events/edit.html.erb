@@ -4,10 +4,10 @@
     <%= e.label :description %>
     <%= e.text_area :description %>
     <br>
-    <% for user in User.all %>
-        <%= check_box_tag "event[user_ids][]", user.id, @event.users.include?(user) %>
-        <%= e.label user.first_name%>
-        <%= e.label user.last_name %>
+    <% User.all.each do |user| %>
+        <%= check_box_tag 'event[user_ids][]', user.id, @event.users.include?(user) %>
+        <%= user.first_name %>
+        <%= user.last_name %>
     <% end %>
     <%= e.submit "Edit Event" %>
 <% end %>

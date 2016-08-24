@@ -1,8 +1,13 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    if params[:id]
+      @events = User.find(params[:id]).events
+    else
+      @events = Event.all
+    end
   end
   def show
+    @users = User.all
     @event = Event.find(params[:id])
   end
   def create
@@ -21,10 +26,9 @@ class EventsController < ApplicationController
   end
   def update
     @event = Event.find(params[:id])
-
       if @event.update_attributes(event_params)
         redirect_to(:action => 'show', :id => @event.id)
-      else
+        else
         render('edit')
       end
   end
@@ -35,6 +39,15 @@ class EventsController < ApplicationController
       redirect_to(:action => 'index')
     else
       render('delete')
+    end
+  end
+  def complete
+    @event = Event.find(params[:id])
+    @event.complete = true
+    if @event.save
+      redirect_to(:action => 'index')
+    else
+      redirect_to root_path
     end
   end
   private

@@ -1,18 +1,55 @@
-<h1><%= @event.name %></h1>
+
+<div style="display: inline-block"><h1><%= @event.name %></h1></div><div style="display: inline-block"><p><%= @event.complete ? "(Event Finalized)" : ""%></p></div>
 <p><%= @event.description %></p>
 <% if current_user.try(:admin) %>
-  <%= link_to "Edit", :action => 'edit', :id => @event.id %>
+  <%= link_to "Edit", {:action => 'edit', :id => @event.id} %>
   <%= link_to "Delete", {:action => 'destroy', :id => @event.id}, method: :delete %>
+    <% if !@event.complete %>
+      <%= link_to "Finalize Event", complete_event_path(id: @event.id) , method: :post%>
+    <%end%>
 <%end%>
 <%= link_to "Back", :action => 'index'%>
-<% if @event.users.empty? %>
-    <% if current_user.try(:admin)%>
+<% if @event.users.empty? && current_user.try(:admin)%>
         <h3>You haven't assigned anybody to this event yet, to do so just edit the event</h3>
-    <% else %>
+<% elsif @event.users.empty? %>
         <h3>Nobody is participating in this event yet, if you would like to participate, ask your teacher.</h3>
-    <% end %>
 <% else %>
     <% @event.users.each do |eu| %>
       <h3><%= eu.first_name.capitalize %> <%= eu.last_name.capitalize %></h3>
     <%end%>
 <% end %>
+<div style="text-align: center;">
+<h2> Comments </h2>
+  <% if @event.users.include?(current_user) && !@event.complete || current_user.try(:admin) %>
+      <p><%= link_to 'add comment', new_comment_path(event: @event.id)%></p>
+  <%end%>
+  <% if @event.comments.empty? %>
+    <h2>There are no comments yet, you might want to add some</h2>
+<% else %>
+      <center>
+      <table class="table" border="1px" style="border-collapse: collapse;">
+
+        <tr>
+          <th><h3>Date</h3></th>
+          <th><h3>Task</h3></th>
+          <th><h3>Time Involved</h3></th>
+          <th><h3>Team Member Responsible</h3></th>
+          <th><h3>Comments</h3></th>
+        </tr>
+    <%@event.comments.each do |ec|%>
+          <% secsdiff = (ec.end_time - ec.start_time).to_i.abs %>
+          <% hours = secsdiff/3600 %>
+          <% secsdiff -= hours * 3600 %>
+          <% mins = secsdiff/60 %>
+            <tr>
+              <td><p><%= ec.created_at.getlocal.strftime("%D")%></p></td>
+              <td><p><%= ec.title %></p></td>
+              <td><p><%= hours %> Hours  <%= mins %> Minutes</p></td>
+              <td><p><%= @users.find(ec.users_id).first_name%> <%=@users.find(ec.users_id).last_name%></p></td>
+              <td><p><%= ec.description %></p></td>
+            <tr>
+    <%end%>
+      </table>
+      </center>
+<%end%>
+</div>
