@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to events_index_path
+      redirect_to Event.find(@comment.events_id)
     else
       render('new')
     end
