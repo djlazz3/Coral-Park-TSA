@@ -1,0 +1,11 @@
+<%= form_for(@comment, :url => {:action => 'update'}) do |c| %>
+    <%= c.label :task %>
+    <%= c.text_field :title %>
+    <%= c.label :start_time %>
+    <%= c.time_select :start_time, :include_blank => false%>
+    <%= c.label :end_time %>
+    <%= c.time_select :end_time, :include_blank => false%>
+    <%= c.label :comment %>
+    <%= c.text_area :description %>
+    <%= c.submit "Edit Comment" %>
+<% end %>

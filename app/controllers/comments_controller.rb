@@ -17,8 +17,8 @@ class CommentsController < ApplicationController
   end
   def update
     @comment = Comment.find(params[:id])
-    if @comment.save
-      redirect_to :back
+    if @comment.update_attributes(comment_params)
+      redirect_to event_path(@comment.events_id)
     else
       render('edit')
     end

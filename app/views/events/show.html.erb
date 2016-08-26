@@ -47,6 +47,12 @@
               <td><p><%= hours %> Hours  <%= mins %> Minutes</p></td>
               <td><p><%= @users.find(ec.users_id).first_name%> <%=@users.find(ec.users_id).last_name%></p></td>
               <td><p><%= ec.description %></p></td>
+            <% if current_user.try(:admin) %>
+              <td>
+                <%= link_to "Delete", {:action => 'destroy', :id => ec.id, :controller => 'comments'}, method: :delete %>
+                <%= link_to "Edit", {:action => 'edit', :id => ec.id, :controller => 'comments'}%>
+              </td>
+            <% end %>
             <tr>
     <%end%>
       </table>
