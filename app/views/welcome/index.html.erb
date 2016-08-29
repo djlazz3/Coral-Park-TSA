@@ -6,4 +6,7 @@
 <%else%>
     <%= link_to 'log in', new_user_session_path, method: :get%>
     <%= link_to 'sign up', new_user_registration_path, method: :get%>
+    <% if current_user.try(:admin) %>
+        <%= link_to 'accounts', accounts_path, method: :get%>
+    <% end %>
 <% end %>

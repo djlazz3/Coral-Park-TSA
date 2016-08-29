@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :parse_request
 
-
   private
 
   def sign_up_params
