@@ -1,12 +1,12 @@
 <% if current_user.try(:email?) %>
     <%= link_to 'log out', destroy_user_session_path, method: :delete%>
     <%= link_to 'events', events_index_path, method: :get%>
+    <% if current_user.try(:admin) %>
+        <%= link_to 'accounts', accounts_path, method: :get%>
+    <% end %>
     <br>
     <h3>logged in as <%= current_user.try(:username) %><% if current_user.try(:admin) %> which is and admin account <% end %></h3>
 <%else%>
     <%= link_to 'log in', new_user_session_path, method: :get%>
     <%= link_to 'sign up', new_user_registration_path, method: :get%>
-    <% if current_user.try(:admin) %>
-        <%= link_to 'accounts', accounts_path, method: :get%>
-    <% end %>
 <% end %>
