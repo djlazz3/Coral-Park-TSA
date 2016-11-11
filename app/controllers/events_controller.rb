@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!
   def index
     if params[:id]
       @events = User.find(params[:id]).events

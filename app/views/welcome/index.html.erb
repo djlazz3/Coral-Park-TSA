@@ -1,12 +1,15 @@
-<% if current_user.try(:email?) %>
-    <%= link_to 'log out', destroy_user_session_path, method: :delete%>
-    <%= link_to 'events', events_index_path, method: :get%>
-    <% if current_user.try(:admin) %>
-        <%= link_to 'accounts', accounts_path, method: :get%>
-    <% end %>
-    <br>
-    <h3>logged in as <%= current_user.try(:username) %><% if current_user.try(:admin) %> which is and admin account <% end %></h3>
-<%else%>
-    <%= link_to 'log in', new_user_session_path, method: :get%>
-    <%= link_to 'sign up', new_user_registration_path, method: :get%>
-<% end %>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+  <center>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="display: inline-block">
+      <a href="http://www.tsaweb.org"><p class="title">National TSA</p></a>
+
+      <a href="http://www.tsaweb.org"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/96/Technology_Student_Association_Emblem.svg/1280px-Technology_Student_Association_Emblem.svg.png" class="img-responsive"></a>
+    </div>
+    </center>
+  <center>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="display: inline-block">
+    <a href="http://www.floridatsa.com"><p class="title">Florida TSA</p></a>
+      <a href="http://www.floridatsa.com"><%= image_tag "download.png", :class =>"img-responsive", :style => "width: 84%"%></a>
+  </div>
+  </center>
+</div>

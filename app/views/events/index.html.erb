@@ -1,11 +1,11 @@
-<%= link_to 'Back', root_path %>
-<%= link_to 'My events', events_index_path(id: current_user.try(:id))  %>
-<%= link_to 'All Events', events_index_path %>
+<center>
+<%= link_to 'My events', events_index_path(id: current_user.try(:id)), :class => "btn btn-primary btn-lg desc"%>
+<%= link_to 'All Events', events_index_path, :class => "btn btn-primary btn-lg desc" %>
 <table>
   <% @events.each do |e| %>
   <tr>
 
-    <td><h1><%= link_to  e.name , :action => 'show', :id => e.id %></h1>
+    <td><p class="name"><%= link_to  e.name , :action => 'show', :id => e.id%></p>
       <% if current_user.try(:admin) %>
     <%= link_to 'Edit', :action => 'edit', :id => e.id%>
     <%= link_to 'Delete', {:action => 'destroy', :id => e.id}, method: :delete, class: 'delete'%>
@@ -15,3 +15,4 @@
   <% end %>
 
 </table>
+</center>

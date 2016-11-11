@@ -1,3 +1,20 @@
+/* line 5, C:/Users/bpadr_000/Documents/GitHub/Coral-Park-TSA/app/assets/stylesheets/events.scss */
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+/* line 4, C:/Users/bpadr_000/Documents/GitHub/Coral-Park-TSA/app/assets/stylesheets/info.scss */
+.title {
+  font-family: 'Rammetto One';
+  font-size: 35px;
+  margin: 0px;
+}
+
+/* line 9, C:/Users/bpadr_000/Documents/GitHub/Coral-Park-TSA/app/assets/stylesheets/info.scss */
+.text {
+  font-family: 'Metrophobic';
+  font-size: 20px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,9 +27,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
  */
+
 body{
-    background-color:#EFEFEF;
+    background-color:#EFEFE0;
 }

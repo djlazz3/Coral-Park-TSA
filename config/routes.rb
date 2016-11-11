@@ -5,16 +5,18 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  get 'events/index'
+  get 'info/index'
   get 'accounts/index'
-  get 'session/index'
    resources :accounts
    resources :comments
-   resources :events do
+  #authenticate :user do
+    get 'events/index'
+    resources :events do
      member do
        post :complete
      end
-   end
+    end
+  #end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

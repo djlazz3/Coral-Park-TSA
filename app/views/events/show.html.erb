@@ -1,6 +1,6 @@
-
-<div style="display: inline-block"><h1><%= @event.name %></h1></div><div style="display: inline-block"><p><%= @event.complete ? "(Event Finalized)" : ""%></p></div>
-<p><%= @event.description %></p>
+<div class="container">
+<div class="name"style="display: inline-block"><h1><%= @event.name %></h1></div><div style="display: inline-block"><p><%= @event.complete ? "(Event Finalized)" : ""%></p></div>
+<p class="desc"><%= @event.description %></p>
 <% if current_user.try(:admin) %>
   <%= link_to "Edit", {:action => 'edit', :id => @event.id} %>
   <%= link_to "Delete", {:action => 'destroy', :id => @event.id}, method: :delete %>
@@ -10,21 +10,22 @@
 <%end%>
 <%= link_to "Back", :action => 'index'%>
 <% if @event.users.empty? && current_user.try(:admin)%>
-        <h3>You haven't assigned anybody to this event yet, to do so just edit the event</h3>
+        <h3 class="desc">You haven't assigned anybody to this event yet, to do so just edit the event</h3>
 <% elsif @event.users.empty? %>
-        <h3>Nobody is participating in this event yet, if you would like to participate, ask your teacher.</h3>
+        <h3 class="desc">Nobody is participating in this event yet, if you would like to participate, ask your teacher.</h3>
 <% else %>
     <% @event.users.each do |eu| %>
-      <h3><%= eu.first_name.capitalize %> <%= eu.last_name.capitalize %></h3>
+      <h3 class="desc"><%= eu.first_name.capitalize %> <%= eu.last_name.capitalize %></h3>
     <%end%>
 <% end %>
+</div>
 <div style="text-align: center;">
-<h2> Comments </h2>
+<h2 class="name"> Comments </h2>
   <% if @event.users.include?(current_user) && !@event.complete || current_user.try(:admin) %>
-      <p><%= link_to 'add comment', new_comment_path(event: @event.id)%></p>
+      <p class="desc"><%= link_to 'add comment', new_comment_path(event: @event.id)%></p>
   <%end%>
   <% if @event.comments.empty? %>
-    <h2>There are no comments yet, you might want to add some</h2>
+    <h2 class="desc">There are no comments yet, you might want to add some</h2>
 <% else %>
       <center>
       <table class="table" border="1px" style="border-collapse: collapse;">
